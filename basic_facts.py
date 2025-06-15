@@ -82,7 +82,7 @@ if want_instructions == "yes":
 
 # game loop stats here
 
-equation_list = ["*", "-", "+", ]
+equation_list = ["*", "+", ]
 game_history = []
 
 import random
