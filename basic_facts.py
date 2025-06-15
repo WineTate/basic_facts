@@ -1,50 +1,40 @@
 # Main routine starts here
-import math
+# import math
 
 
-def int_check(question, low=None, high=None, exit_code=None):
-    # if any integer is allowed...
-    if low is None and high is None:
-        error = "please enter an integer"
-
-    # if the number needs to be more than an
-    # integer (ie: rounds / 'high number')
-    elif low is not None and high is None:
-        error = (f"Please enter an integer that is "
-                 f"more than / equal to {low}")
-
-    # if the number needs to between low & high
-    else:
-        error = (f"Please enter an integer that is"
-                 f"between {low} and {high} (inclusive)")
-
+def int_check(question):
+    """Checks for an integer more than zero / <enter> for infinite"""
     while True:
-        response = input(question).lower()
+        error = "Please enter an integer that is 1 or more."
 
-        # check for infinite mode / exit code
-        if response == exit_code:
-            return response
+        to_check = input(question)
+
+        # check for infinite mode
+
+        if to_check == "":
+            return "infinite"
 
         try:
-            response = int(response)
-
-            # check integer is not too low...
-            if low is not None and response < low:
+            response = int(to_check)
+            # check that the number is more than / equal to 1
+            if response < 1:
                 print(error)
 
-            # check the integer is more than the low number
-            elif high is not None and response > high:
-                print(error)
-
-            # if the response is valid, return it
             else:
                 return response
-
 
         except ValueError:
             print(error)
 
 
+def math_compare(user, answer):
+
+    # if the answer and the users choice is the same, the user is correct
+    if user == answer:
+        "correct"
+
+    else:
+        "incorrect"
 
 def string_checker(question, valid_ans=('yes', 'no')):
     """Checks users enter and answer from a list"""
@@ -81,7 +71,6 @@ print()
 # display the instructions if user wants to see them
 if want_instructions == "yes":
     print('''
-
         ***   Instructions   ***
 
     To begin, you have to pick how many games you want to play for.
@@ -93,7 +82,8 @@ if want_instructions == "yes":
 
 # game loop stats here
 
-equation_list = ["x", "-", "+", ]
+equation_list = ["*", "-", "+", ]
+game_history = []
 
 import random
 
@@ -120,21 +110,58 @@ while rounds_played < num_rounds:
 
     # display the question for the user
     print("What is:")
-    int_one = random.randint(1,9)
-    int_two = random.randint(1,9)
+    int_one = random.randint(1,12)
+    equation_sym = random.choice (equation_list)
+    int_two = random.randint(1,12)
 
-    user_choice = int_check("Chose: ")
+    user_answer = int_check(f"{int_one} {equation_sym} {int_two} = ")
+    answer = eval(f"{int_one} {equation_sym} {int_two} ")
+
+    if user_answer == answer:
+        feedback = "Correct"
+    else:
+        feedback = "incorrect"
+
+    round_feedback = f"{user_answer} - {feedback}"
+    history_item = f"Round: {rounds_played} - {round_feedback}"
+
+    print(round_feedback)
+    game_history.append(history_item)
+
+# game loop ends here
+
+# display stats
+see_history = string_checker("\nDo you want to see your game history")
+if see_history == "yes":
+    for item in game_history:
+        print(item)
+
+        print()
+        print("Thank you for playing!")
 
 
 
-    # if the user input answer, display if they are either correct or wrong
 
 
 
 
-    # if user choice is exit code, break the loop
-    if user_choice == "xxx":
-        break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
