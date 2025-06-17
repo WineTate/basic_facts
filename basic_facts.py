@@ -118,11 +118,11 @@ while rounds_played < num_rounds:
     answer = eval(f"{int_one} {equation_sym} {int_two} ")
 
     if user_answer == answer:
-        feedback = "Correct"
+        feedback = "is correct"
     else:
-        feedback = "incorrect"
+        feedback = f"incorrect, the answer was {answer}"
 
-    round_feedback = f"{user_answer} - {feedback}"
+    round_feedback = f"{feedback}"
     history_item = f"Round: {rounds_played} - {round_feedback}"
 
     print(round_feedback)
@@ -136,8 +136,8 @@ if see_history == "yes":
     for item in game_history:
         print(item)
 
-        print()
-        print("Thank you for playing!")
+print()
+print("Thank you for playing!")
 
 
 
